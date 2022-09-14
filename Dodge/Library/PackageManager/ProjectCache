@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637981347706066129
+      ticks: 637986547480000000
     m_Hash: 3979996139
   m_LockFileStatus:
     m_FilePath: D:/GitHub/Dodge2/Dodge/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637981348059878387
+      ticks: 637986547480000000
     m_Hash: 3809199474
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
