@@ -39,4 +39,9 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.AddForce(-speed, 0f, 0f);
         }
     }
+
+    void Die()
+    {
+
+    }
 }
