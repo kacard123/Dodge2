@@ -25,10 +25,10 @@ public class Bullet : MonoBehaviour
         if(other.tag == "Player")
         {
             // 상대방 게임 오브젝트에서 PlayerController 컴포넌트 가져오기
-            PlayerController playercontroller = other.GetComponent<PlayerController>();
+            PlayerController playerController = other.GetComponent<PlayerController>();
 
             // 상대방으로부터 PlayerController 컴포넌트를 가져오는 데 성공했다면
-            if(PlayerController != null)
+            if(playerController != null)
             {
                 // 상대방 PlayerController 컴포넌트의 Die() 메서드 실행
                 playerController.Die();
