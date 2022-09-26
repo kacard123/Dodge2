@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.R))
             {
                 // SampleScene æ¿¿ª ∑ŒµÂ
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("SampleScene");
             }
         }
     }
