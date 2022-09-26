@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameoverText: {fileID: 1303510642}
-  timeText: {fileID: 1303510644}
+  timeText: {fileID: 307608633}
   recordText: {fileID: 318208642}
 --- !u!4 &2062363830
 Transform:

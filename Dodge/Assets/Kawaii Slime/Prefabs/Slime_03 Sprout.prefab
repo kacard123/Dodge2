@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8502783908651140903}
   - component: {fileID: 1018643583632276013}
   - component: {fileID: 5433413827195718208}
+  - component: {fileID: 525013226}
   m_Layer: 0
   m_Name: Slime_03 Sprout
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +52,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &1018643583632276013
 MonoBehaviour:
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7184aa3aacec82048b9aaf33b2df97b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigidbody: {fileID: 0}
+  playerRigidbody: {fileID: 8502783908651140903}
   speed: 8
 --- !u!65 &5433413827195718208
 BoxCollider:
@@ -78,8 +79,26 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5828701, y: 0.645674, z: 0.6213036}
+  m_Center: {x: -0.00017207861, y: 0.35816753, z: -0.019082725}
+--- !u!114 &525013226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7099655024501674456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192143b65e8e41e4b87a974a3c17fb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpImage: {fileID: 0}
+  maxHP: 100
+  currenthp: 100
+  hpIncreaseSpeed: 10
+  hpReChargeTime: 3
+  currentHPRechargeTime: 10
 --- !u!1 &7099655024573255015
 GameObject:
   m_ObjectHideFlags: 0

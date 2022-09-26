@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private float surviveTime; // 생존 시간
     private bool isGameOver; // 게임오버 상태
 
+
     void Start()
     {
         // 생존 시간과 게임오버 상태 초기화
@@ -64,6 +65,6 @@ public class GameManager : MonoBehaviour
         }
 
         // 최고 기록을 recordText 텍스트 컴포넌트를 이용해 표시
-        recordText.text = "BestTime" + (int)bestTime;
+        recordText.text = "BestTime : " + (int)bestTime;
     }
 }

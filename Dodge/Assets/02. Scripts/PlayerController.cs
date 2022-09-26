@@ -8,24 +8,47 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRigidbody;
     public float speed = 8f; // 이동 속력
 
-    void Start()
+    [SerializeField]
+    private KeyCode keyCodeAttack = KeyCode.Space;
+
+    private PlayerWeapon weapon;
+
+    private void Awake()
     {
-       
+        weapon = GetComponent<PlayerWeapon>();
     }
 
-    
+    // private HpbarControl hpbarControl;
+
+    void Start()
+    {
+        // hpbarControl = FindObjectOfType<HpbarControl>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("Enemy"))
+        {
+
+            Destroy(collision.gameObject); // 적 사망
+
+        }
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.UpArrow) == true)
         {
             // 위쪽 방향키 입력이 감지된 경우 z방향 힘주기
             playerRigidbody.AddForce(0f, 0f, speed);
+
         }
 
         if (Input.GetKey(KeyCode.DownArrow) == true)
         {
             // 아래쪽 방향키 입력이 감지된 경우 -z방향 힘주기
             playerRigidbody.AddForce(0f, 0f, -speed);
+
         }
 
         if (Input.GetKey(KeyCode.RightArrow) == true)
@@ -33,11 +56,23 @@ public class PlayerController : MonoBehaviour
             // 오른쪽 방향키 입력이 감지된 경우 x방향 힘주기
             playerRigidbody.AddForce(speed, 0f, 0f);
         }
+
         if (Input.GetKey(KeyCode.LeftArrow) == true)
         {
             // 왼쪽 방향키 입력이 감지된 경우 -x방향 힘주기
             playerRigidbody.AddForce(-speed, 0f, 0f);
+
         }
+
+        if (Input.GetKeyDown(keyCodeAttack))
+        {
+            weapon.StartFiring();
+        }
+        else if (Input.GetKeyUp(keyCodeAttack))
+        {
+            weapon.StopFiring();
+        }
+
     }
 
     public void Die()
