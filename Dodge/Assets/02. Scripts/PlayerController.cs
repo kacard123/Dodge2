@@ -6,33 +6,28 @@ public class PlayerController : MonoBehaviour
 {
     // 이동에 사용할 리지드바디 컴포넌트
     public Rigidbody playerRigidbody;
-    public float speed = 8f; // 이동 속력
+    public float speed = 15f; // 이동 속력
+    public float rotateSpeed = 10f; // 회전 속도
+
+    float h, v;
 
     [SerializeField]
     private KeyCode keyCodeAttack = KeyCode.Space;
 
+    private BoxCollider boxCollider;
+
     private PlayerWeapon weapon;
+
+
+
+    void Start()
+    {
+
+    }
 
     private void Awake()
     {
         weapon = GetComponent<PlayerWeapon>();
-    }
-
-    // private HpbarControl hpbarControl;
-
-    void Start()
-    {
-        // hpbarControl = FindObjectOfType<HpbarControl>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == ("Enemy"))
-        {
-
-            Destroy(collision.gameObject); // 적 사망
-
-        }
     }
 
     void Update()
@@ -75,6 +70,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == ("Enemy"))
+        {
+
+            Destroy(collision.gameObject); // 적 사망
+
+        }
+    }
+
     public void Die()
     {
         // 자신의 게임 오브젝트를 비활성화
@@ -85,5 +90,24 @@ public class PlayerController : MonoBehaviour
         // 가져온 GameManager 오브젝트의 EndGame() 메서드 실행
         gameManager.EndGame();  
     }
+
+    // 이동 관련 함수를 짤 때는 Update보다 FixedUpdate가 더 좋음
+    void FixedUpdate()
+    {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        Vector3 dir = new Vector3(h, 0, v); // new Vector3(h, 0, v)가 자주 쓰이게 되었으므로 dir이라는 변수에 넣고 향후 편하게 사용할 수 있게 함
+
+        // 바라보는 방향으로 회전 후 다시 정면을 바라보는 현상을 막기 위해 설정
+        if (!(h == 0 && v == 0))
+        {
+            // 이동과 회전을 함께 처리
+            transform.position += dir * speed * Time.deltaTime;
+            // 회전하는 부분. Point 1.
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotateSpeed);
+        }
+    }
+   
 
 }

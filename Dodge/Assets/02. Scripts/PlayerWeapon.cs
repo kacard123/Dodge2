@@ -9,6 +9,8 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private float attackRate = 0.45f; // 공격 속도
 
+    public Transform target;
+
     public void StartFiring()
     {
         StartCoroutine("TryAttack");
@@ -24,7 +26,9 @@ public class PlayerWeapon : MonoBehaviour
         while (true)
         {
             // 발사체 오브젝트 생성
-            Instantiate(weaponPrefab, transform.position, Quaternion.identity);
+            GameObject weapon = Instantiate(weaponPrefab, transform.position, transform.rotation);//aternion.identity
+
+            weapon.transform.LookAt(target);
 
             // attackRate 시간만큼 대기
             yield return new WaitForSeconds(attackRate);

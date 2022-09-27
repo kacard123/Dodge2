@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeaponCollider : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         // 발사체에 부딪힌 오브젝트의 태그가 "Enemy"이면
         if (collision.CompareTag("Enemy"))

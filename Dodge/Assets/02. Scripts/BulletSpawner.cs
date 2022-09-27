@@ -46,4 +46,14 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Ball")
+        {
+            collision.gameObject.SetActive(false);
+
+            Destroy(gameObject);
+        }
+
+    }
 }

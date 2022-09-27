@@ -14,39 +14,58 @@ public class GameManager : MonoBehaviour
     private float surviveTime; // 생존 시간
     private bool isGameOver; // 게임오버 상태
 
+    public GameObject clearText;
+
+    public bool isClear = false;
 
     void Start()
     {
         // 생존 시간과 게임오버 상태 초기화
         surviveTime = 0;
         isGameOver = false;
+        isClear = false;
+        clearText.SetActive(false);
     }
 
     void Update()
     {
         // 게임오버가 아닌 동안
-        if(!isGameOver)
+        if (!isGameOver)
         {
             // 생존 시간 갱신 -> 생존 시간은 누적될 수 없다
             surviveTime += Time.deltaTime;
             // 갱신한 생존 시간을 timeText 텍스트 컴포넌트를 이용해 표시
             timeText.text = "Time: " + (int)surviveTime;
+
+            if (surviveTime >= 60f && !isClear)
+            {
+                Clear();
+            }
         }
 
         else
         {
             // 게임오버 상태에서 R키를 누른 경우
-            if(Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 // SampleScene 씬을 로드
                 SceneManager.LoadScene("SampleScene");
             }
         }
     }
-    
+
+    public void Clear()
+    {
+        isClear = true;
+        //clearText.text = "Clear!";
+        clearText.SetActive(true);
+    }
+
     // 현재 게임을 게임오버 상태로 변경하는 메서드
     public void EndGame()
     {
+        if (isClear) return;
+
         // 현재 상태를 게임오버 상태로 전환
         isGameOver = true;
         // 게임오버 텍스트 게임 오브젝트를 활성화
@@ -56,7 +75,7 @@ public class GameManager : MonoBehaviour
         float bestTime = PlayerPrefs.GetFloat("BestTime");
 
         // 이전까지의 최고 기록보다 현재 생존 시간이 더 크다면
-        if(surviveTime > bestTime)
+        if (surviveTime > bestTime)
         {
             // 최고 기록 값을 현재 생존 시간 값으로 변경
             bestTime = surviveTime;
